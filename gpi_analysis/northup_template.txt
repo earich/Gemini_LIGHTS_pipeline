@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe Name="Basic Polarization Sequence (From podc cubes)" ReductionType="PolarimetricScience" ShortName="polsequencefromcubes">
+<!--
+</dataset>
+<primitive name="Rotate North Up" Rot_Method="CUBIC" Center_Method="HEADERS" centerx="140" centery="140" pivot="0" Save="1" gpitv="0" />
+</recipe>

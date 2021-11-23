@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe Name="Simple Polarization Datacube Extraction" ReductionType="PolarimetricScience" ShortName="basicpolcube">
+<!--
+</dataset>
+<primitive name="Measure Star Position for Polarimetry" x0="148" y0="144" search_window="5" mask_radius="40" highpass="1" lower_threshold="-100" Save="0" gpitv="0" />
+<primitive name="Measure Satellite Spot Flux in Polarimetry" Save="1" gpitv="0" Aperture="4" Inskyrad="6" Outskyrad="9" SecondOrder="0" ShowAperture="0" FindPSFCENT="0" STARXCEN="145" STARYCEN="148" Companion="0" StarXPos="98" StarYPos="121" StarAperture="8" StarInnerSkyRad="12" StarOuterSkyRad="16" Verbose="0" />
+</recipe>

@@ -1,0 +1,55 @@
+execute 2019-08-07 13:04:12.353233: pipeline.py /Users/earich/work_reduction/Raw/ template.txt
+execute 2019-08-07 13:11:56.911942: pipeline.py /Users/earich/work_reduction/Raw/ template.txt
+execute 2019-08-07 13:28:17.438656: pipeline.py /Users/earich/work_reduction/Raw/ template.txt
+execute 2019-08-07 13:29:17.314893: pipeline.py /Users/earich/work_reduction/Raw/ template.txt
+execute 2019-08-07 13:54:55.444172: pipeline.py /Users/earich/work_reduction/Raw/ template.txt
+dir /Users/earich/work_reduction/Reduced/190807/hd50138-J/
+execute 2019-08-08 10:38:29.677072: pipeline.py template.txt
+execute 2019-08-08 10:41:58.129653: pipeline.py template.txt
+execute 2019-08-08 10:43:36.156471: pipeline.py template.txt
+execute 2019-08-08 10:58:03.921356: pipeline.py template.txt
+execute 2019-08-08 10:59:49.141837: pipeline.py template.txt
+execute 2019-08-08 11:09:42.451030: pipeline.py template.txt
+execute 2019-08-08 11:11:34.946649: pipeline.py template.txt
+execute 2019-08-08 11:15:50.338561: pipeline.py template.txt
+execute 2019-08-08 11:18:08.030668: pipeline.py template.txt
+execute 2019-08-08 11:21:50.070385: pipeline.py template.txt
+execute 2019-08-08 11:30:24.286711: pipeline.py template.txt
+execute 2019-08-08 13:45:16.075218: pipeline.py template.txt
+execute 2019-08-08 13:58:32.701032: pipeline.py template.txt
+execute 2019-08-08 14:03:32.825634: pipeline.py template.txt
+execute 2019-08-08 14:05:10.643977: pipeline.py template.txt
+execute 2019-08-08 14:06:22.501430: pipeline.py template.txt
+execute 2019-08-08 14:08:30.449496: pipeline.py template.txt
+execute 2019-08-08 14:10:37.369497: pipeline.py template.txt
+execute 2019-08-08 14:17:35.364838: pipeline.py template.txt
+execute 2019-08-08 14:46:02.626670: pipeline.py template.txt
+execute 2019-08-08 14:48:57.702449: pipeline.py template.txt
+execute 2019-08-08 14:53:02.756457: pipeline.py template.txt
+execute 2019-08-08 14:56:41.333260: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190808/hd50138-J/
+execute 2019-08-08 15:04:23.673925: pipeline.py template.txt
+execute 2019-08-08 15:11:53.103472: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190808/hd50138-J/
+execute 2019-08-12 15:58:15.593929: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 16:05:05.837742: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 16:17:54.918928: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 16:32:23.052483: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 16:47:26.646134: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 17:07:24.404211: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 17:13:33.265197: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-12 17:29:20.001631: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190812/hd50138-J/
+execute 2019-08-13 11:07:17.755927: pipeline.py template.txt
+execute 2019-08-13 11:59:21.645409: pipeline.py template.txt
+dir /Users/earich/work_reduction/Reduced/190813/FUOri-J/
+execute 2019-08-13 14:31:09.540709: pipeline.py template.txt
+execute 2019-08-13 14:43:10.039020: pipeline.py template.txt
+execute 2019-08-13 14:55:15.412207: pipeline.py template.txt

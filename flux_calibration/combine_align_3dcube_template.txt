@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe Name="Combine Aligned 3D Datacubes" ReductionType="PolarimetricScience" ShortName="">
+<!--
+</dataset>
+<primitive name="Accumulate Images" Method="InMemory" />
+<primitive name="Combine 3D Datacubes" Method="MEAN" sig_clip="3" align_star="1" Save="1" gpitv="2" />
+</recipe>

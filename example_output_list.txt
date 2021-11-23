@@ -1,0 +1,102 @@
+List of all files used in reduction for this object, FU Ori.
+
+For N raw data files, should end up with:
+N   x podc
+N   x PSFchecked_podc, where bad centres are overwritten
+N/4 x podc_stokesdc, interim stokes datacubes
+1   x combined_stokesdc, mean of the interim stokes datacubes
+1   x combined_rstokesdc, [I,Qphi,Uphi,V] of the above
+1   x maps.png, quick look image of total I, LPI, Qphi, Uphi
+
+n.b. The sanitycheck, PSFcheck, and recipe files tend to be saved elsewhere.
+I move them all into one place when the reduction is complete.
+
+---
+
+peter:FU Ori-J al630$ ls
+FU Ori-J_S20180103S0187_combined_rstokesdc.fits
+FU Ori-J_S20180103S0187_combined_stokesdc.fits
+FU Ori-J_maps.png
+FU Ori-J_sanitycheck.txt
+PSFcheck.txt
+S20180103S0156-S20180103S0159_polsequencefromcubes_recipe.done.xml
+S20180103S0156-S20180103S0187_basicpolcube_recipe.done.xml
+S20180103S0156_PSFchecked_podc.fits
+S20180103S0156_podc.fits
+S20180103S0157_PSFchecked_podc.fits
+S20180103S0157_podc.fits
+S20180103S0158_PSFchecked_podc.fits
+S20180103S0158_podc.fits
+S20180103S0159_PSFchecked_podc.fits
+S20180103S0159_PSFchecked_podc_stokesdc.fits
+S20180103S0159_podc.fits
+S20180103S0160-S20180103S0163_polsequencefromcubes_recipe.done.xml
+S20180103S0160_PSFchecked_podc.fits
+S20180103S0160_podc.fits
+S20180103S0161_PSFchecked_podc.fits
+S20180103S0161_podc.fits
+S20180103S0162_PSFchecked_podc.fits
+S20180103S0162_podc.fits
+S20180103S0163_PSFchecked_podc.fits
+S20180103S0163_PSFchecked_podc_stokesdc.fits
+S20180103S0163_podc.fits
+S20180103S0164-S20180103S0167_polsequencefromcubes_recipe.done.xml
+S20180103S0164_PSFchecked_podc.fits
+S20180103S0164_podc.fits
+S20180103S0165_PSFchecked_podc.fits
+S20180103S0165_podc.fits
+S20180103S0166_PSFchecked_podc.fits
+S20180103S0166_podc.fits
+S20180103S0167_PSFchecked_podc.fits
+S20180103S0167_PSFchecked_podc_stokesdc.fits
+S20180103S0167_podc.fits
+S20180103S0168-S20180103S0171_polsequencefromcubes_recipe.done.xml
+S20180103S0168_PSFchecked_podc.fits
+S20180103S0168_podc.fits
+S20180103S0169_PSFchecked_podc.fits
+S20180103S0169_podc.fits
+S20180103S0170_PSFchecked_podc.fits
+S20180103S0170_podc.fits
+S20180103S0171_PSFchecked_podc.fits
+S20180103S0171_PSFchecked_podc_stokesdc.fits
+S20180103S0171_podc.fits
+S20180103S0172-S20180103S0175_polsequencefromcubes_recipe.done.xml
+S20180103S0172_PSFchecked_podc.fits
+S20180103S0172_podc.fits
+S20180103S0173_PSFchecked_podc.fits
+S20180103S0173_podc.fits
+S20180103S0174_PSFchecked_podc.fits
+S20180103S0174_podc.fits
+S20180103S0175_PSFchecked_podc.fits
+S20180103S0175_PSFchecked_podc_stokesdc.fits
+S20180103S0175_podc.fits
+S20180103S0176-S20180103S0179_polsequencefromcubes_recipe.done.xml
+S20180103S0176_PSFchecked_podc.fits
+S20180103S0176_podc.fits
+S20180103S0177_PSFchecked_podc.fits
+S20180103S0177_podc.fits
+S20180103S0178_PSFchecked_podc.fits
+S20180103S0178_podc.fits
+S20180103S0179_PSFchecked_podc.fits
+S20180103S0179_PSFchecked_podc_stokesdc.fits
+S20180103S0179_podc.fits
+S20180103S0180-S20180103S0183_polsequencefromcubes_recipe.done.xml
+S20180103S0180_PSFchecked_podc.fits
+S20180103S0180_podc.fits
+S20180103S0181_PSFchecked_podc.fits
+S20180103S0181_podc.fits
+S20180103S0182_PSFchecked_podc.fits
+S20180103S0182_podc.fits
+S20180103S0183_PSFchecked_podc.fits
+S20180103S0183_PSFchecked_podc_stokesdc.fits
+S20180103S0183_podc.fits
+S20180103S0184-S20180103S0187_polsequencefromcubes_recipe.done.xml
+S20180103S0184_PSFchecked_podc.fits
+S20180103S0184_podc.fits
+S20180103S0185_PSFchecked_podc.fits
+S20180103S0185_podc.fits
+S20180103S0186_PSFchecked_podc.fits
+S20180103S0186_podc.fits
+S20180103S0187_PSFchecked_podc.fits
+S20180103S0187_PSFchecked_podc_stokesdc.fits
+S20180103S0187_podc.fits

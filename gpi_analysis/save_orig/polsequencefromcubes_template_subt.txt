@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipe Name="Basic Polarization Sequence (From podc cubes)" ReductionType="PolarimetricScience" ShortName="polsequencefromcubes">
+<!--
+</dataset>
+<primitive name="Accumulate Images" Method="InMemory" />
+<primitive name="Clean Polarization Pairs via Double Difference" fix_badpix="1" Save_diffbias="0" gpitv_diffbias="10" Save="1" debug="0" />
+<primitive name="Subtract Mean Stellar Polarization" Method="Auto" InnerRadius="0" OuterRadius="40" Fraction="1" WriteToFile="0" Filename="Stellar_Pol_Stokes.txt" Save="1" gpitv="2" />
+<primitive name="Rotate North Up" Rot_Method="CUBIC" Center_Method="HEADERS" centerx="140" centery="140" pivot="0" Save="0" gpitv="0" />
+<primitive name="Combine Polarization Sequence" HWPoffset="-29.14" IncludeSystemMueller="0" IncludeSkyRotation="1" PerfectHWP="0" Save="1" gpitv="10" />
+</recipe>

@@ -1,0 +1,2 @@
+         TARGET n_podc  TIME_INT   FLUX  FLUX_ERR      CALIBFAC      CALIBERR    SCALE  SCALE_PERC_ERR
+        FUOri-J     24   29.0958  3.934     0.152   3.56511e-08       10.3682    5.002          22.528

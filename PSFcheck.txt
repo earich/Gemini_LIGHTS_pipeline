@@ -1,0 +1,79 @@
+/Users/al630/gpi_pipeline_original_1.4.0_source/data/Reduced/190502/FU Ori-J/
+================ Cycle 1 ================
+Initial coords:
+S20180103S0156_podc.fits [150.    143.995]
+S20180103S0157_podc.fits [149.009 145.086]
+S20180103S0158_podc.fits [148.843 144.919]
+S20180103S0159_podc.fits [148.516 144.941]
+1 anomalous coords.
+S20180103S0156_podc.fits [150.    143.995]
+Updated to coords:       [148.789, 144.982]
+Final coords: 
+S20180103S0156_podc.fits [148.789 144.982]
+S20180103S0157_podc.fits [149.009 145.086]
+S20180103S0158_podc.fits [148.843 144.919]
+S20180103S0159_podc.fits [148.516 144.941]
+
+================ Cycle 2 ================
+Initial coords:
+S20180103S0160_podc.fits [148.98  144.812]
+S20180103S0161_podc.fits [149.126 145.111]
+S20180103S0162_podc.fits [148.725 144.77 ]
+S20180103S0163_podc.fits [148.662 144.701]
+0 anomalous coords.
+
+================ Cycle 3 ================
+Initial coords:
+S20180103S0164_podc.fits [148.845 144.346]
+S20180103S0165_podc.fits [148.781 144.755]
+S20180103S0166_podc.fits [148.848 144.742]
+S20180103S0167_podc.fits [148.411 144.72 ]
+0 anomalous coords.
+
+================ Cycle 4 ================
+Initial coords:
+S20180103S0168_podc.fits [148.814 144.743]
+S20180103S0169_podc.fits [148.852 144.53 ]
+S20180103S0170_podc.fits [148.739 144.687]
+S20180103S0171_podc.fits [148.877 144.401]
+0 anomalous coords.
+
+================ Cycle 5 ================
+Initial coords:
+S20180103S0172_podc.fits [148.792 144.327]
+S20180103S0173_podc.fits [148.995 144.468]
+S20180103S0174_podc.fits [148.983 145.01 ]
+S20180103S0175_podc.fits [148.713 144.909]
+0 anomalous coords.
+
+================ Cycle 6 ================
+Initial coords:
+S20180103S0176_podc.fits [148.999 144.58 ]
+S20180103S0177_podc.fits [148.997 144.332]
+S20180103S0178_podc.fits [148.845 144.485]
+S20180103S0179_podc.fits [148.573 145.209]
+0 anomalous coords.
+
+================ Cycle 7 ================
+Initial coords:
+S20180103S0180_podc.fits [148.624 144.406]
+S20180103S0181_podc.fits [148.033 144.407]
+S20180103S0182_podc.fits [147.922 144.931]
+S20180103S0183_podc.fits [147.986 144.729]
+0 anomalous coords.
+
+================ Cycle 8 ================
+Initial coords:
+S20180103S0184_podc.fits [148.032 143.999]
+S20180103S0185_podc.fits [148.173 143.98 ]
+S20180103S0186_podc.fits [150.    145.478]
+S20180103S0187_podc.fits [148.004 144.21 ]
+1 anomalous coords.
+S20180103S0186_podc.fits [150.    145.478]
+Updated to coords:       [148.07, 144.063]
+Final coords: 
+S20180103S0184_podc.fits [148.032 143.999]
+S20180103S0185_podc.fits [148.173 143.98 ]
+S20180103S0186_podc.fits [148.07  144.063]
+S20180103S0187_podc.fits [148.004 144.21 ]
+

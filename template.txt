@@ -1,0 +1,8 @@
+# ignores "#". 0-,1-,2- organize into what the keyword will be trying to modify.
+0-x_off = "0"
+0-y_off = "0"
+0-x0="148" 
+0-y0="145"
+0-search_window="5"
+1-Bcent = "(178,198)"
+# End of input parameters

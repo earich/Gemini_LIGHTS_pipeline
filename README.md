@@ -1,30 +1,45 @@
-# Gemini_LIGHTS_pipeline
-Pipeline to reduce GPI polarized light data. Program uses the IDL DRP created for GPI
+**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
-  This program will help reduce high-contrast polarized light imagery from the Gemini Planet Imager. 
-This code acts as a wrapper around the IDL Data Reduction Pipline (DRP) written to reduce GPI data,
-thus the IDL DRP pipeline must be installed for this Gemini-LIGHTS pipeline to opportate. You can 
-find a description of the DRP pipeline here: http://docs.planetimager.org/pipeline/
-This program automates the IDL DRP pipeline, makes adjustments to it's reduction, and allows for
-greater reproducablility.
+When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
 
-Dependencies:
-numpy, astropy, matplotlib
-Requires the instillation of the IDL DRP pipeline. Written for verison 1.5 which the latest version
-can be found here: (https://github.com/geminiplanetimager/gpi_pipeline)
+*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
 
-This program was written by Anna Laws and Evan Rich and utilized in Laws et al. 2020 and 
-Rich et al. In Prep. Please cite both works when utilizing this program along with the relevent
-IDL DRP papers described here: http://docs.planetimager.org/pipeline/
-ADS: https://ui.adsabs.harvard.edu/abs/2020ApJ...888....7L/abstract
+---
 
+## Edit a file
 
-To execute the program, first start IDL DRP with the gpi-pipeline command. To run, execute:
-python3 pipeline.py mwc275-J.txt mwc275/20140424-J/
-where pipeline.py is the main program, 'mwc275-J.txt' is the parameter file for the reduction, and 
-'mwc275/20140424-J/' is the sub-directory within the Raw directory where the raw data files for 
-mwc275 and the parameter file are located. All output files are saved within the Reduced directory
-with the sub-directory labed based on the target name, flux band observed, and observational date.
+You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
-This readme file is incomplete. Further discripton is needed of the flux calibration, the parameter file structure, and output files.
+1. Click **Source** on the left side.
+2. Click the README.md link from the list of files.
+3. Click the **Edit** button.
+4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
+5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
+6. Go back to the **Source** page.
 
+---
+
+## Create a file
+
+Next, you’ll add a new file to this repository.
+
+1. Click the **New file** button at the top of the **Source** page.
+2. Give the file a filename of **contributors.txt**.
+3. Enter your name in the empty file space.
+4. Click **Commit** and then **Commit** again in the dialog.
+5. Go back to the **Source** page.
+
+Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+
+---
+
+## Clone a repository
+
+Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
+
+1. You’ll see the clone button under the **Source** heading. Click that button.
+2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
+3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
+4. Open the directory you just created to see your repository’s files.
+
+Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
