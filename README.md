@@ -14,7 +14,8 @@ Requires the instillation of the IDL DRP pipeline. Written for verison 1.5 which
 can be found here: (https://github.com/geminiplanetimager/gpi_pipeline)
 
 This program was written by Anna Laws and Evan Rich and utilized in Laws et al. 2020 and 
-Rich et al. In Prep. Please cite both works when utilizing this program.
+Rich et al. In Prep. Please cite both works when utilizing this program along with the relevent
+IDL DRP papers described here: http://docs.planetimager.org/pipeline/
 ADS: https://ui.adsabs.harvard.edu/abs/2020ApJ...888....7L/abstract
 
 
