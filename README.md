@@ -1,45 +1,43 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+**Dependencies**
+python3
+astropy
+matplotlib
+numpy
+scipy
+The IDL Data Reduction Pipeline (DRP). To download the most recent version here: https://github.com/geminiplanetimager/gpi_pipeline
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+**Installation**
+Download git repository. This code acts as a wrapper for the IDL Data Reduction Pipeline (DRP) for Gemini Planet Imager (GPI). http://docs.planetimager.org/pipeline/ . This wrapper was written to work with version 1.5.0 of the DRP to reduce GPI1.0 polarized light data. Older versions of DRP will be incompatable.
+Follow the instructions to install the DRP.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+**Gemini-LIGHTS pipeline wrapper**
+This wrapper functions to modify template recipies. These recipies are normally modified (when only using the IDL DRP code) with the Recipe Editor. This pipeline allows to bypass the GUI and automate the process. The Gemini-LIGHTS pipeline has also implemented sanity checks such as centering, flexure, stellar/insturmental polarization to ensure accurate and reproducible results.
 
----
+The python wrapper works by taking key parameters indicated in the template file in the Raw directory. 
 
-## Edit a file
+**Usage**
+In this example, I will use the example for the target MWC 275 which was observed in 2014. I will walk you step by step and point out files that are important to look at during each step.
 
-You’ll start by editing this README file to learn how to edit a file in Bitbucket.
+1) Start the DRP with IDL using the gpi-pipeline command in the terminal.
+2) Place necessary calibration files into the calibration directory
+3) Update the list of calibration files by clicking Rescan Calib. DB in the bottom left corner of the GPI DRP Status Console
+4) list names of all files into a files.lst file located in the targets Raw directory. This can easily be generated with the terminal command: ls *.fits > files.lst
+5) execute python3 python3 pipeline.py mwc275-J.txt mwc275/20140424-J/ first
+6) The first keyword will:
+  A) Perform sanity check on the files within files.lst to ensure the files are in the right time order and the waveplate angle WPANGLE is in the proper order.
+  B) Create the first PODC file based on the first file in files.lst
+  C) end the pipeline
+7) Inspect the sanitycheck text file located in the targets raw directory (mwc275-J_sanitycheck.txt). Search for files in the wrong order, and WPANGLE observations that are in the right order and that there are 4 rotations of the half wave plate (0,22.5,45,67.5) to make an individular stokes.
+8) Inspect the podc file (suffix _bpfix.fits). Search for bright binaries or failure of the flexure. Adjust these parameters in the template file (mwc275-J.txt) as needed.
+9) execute python3 python3 pipeline.py mwc275-J.txt mwc275/20140424-J/
+10) No keyword will execute the entire pipeline producing _combined_rstokesdc.fits files. 
+11) 
+python3 pipeline.py template.txt /location_in_Raw_directory/ optional_key_word
+where template.txt is a text file listing the requested reduction parameters 
 
-1. Click **Source** on the left side.
-2. Click the README.md link from the list of files.
-3. Click the **Edit** button.
-4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
-6. Go back to the **Source** page.
 
----
+**Outline of file outputs** 
+Diagnostic Images:
 
-## Create a file
+Output FITS files:
 
-Next, you’ll add a new file to this repository.
-
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
-
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
-
----
-
-## Clone a repository
-
-Use these steps to clone from SourceTree, our client for using the repository command-line free. Cloning allows you to work on your files locally. If you don't yet have SourceTree, [download and install first](https://www.sourcetreeapp.com/). If you prefer to clone from the command line, see [Clone a repository](https://confluence.atlassian.com/x/4whODQ).
-
-1. You’ll see the clone button under the **Source** heading. Click that button.
-2. Now click **Check out in SourceTree**. You may need to create a SourceTree account or log in.
-3. When you see the **Clone New** dialog in SourceTree, update the destination path and name if you’d like to and then click **Clone**.
-4. Open the directory you just created to see your repository’s files.
-
-Now that you're more familiar with your Bitbucket repository, go ahead and add a new file locally. You can [push your change back to Bitbucket with SourceTree](https://confluence.atlassian.com/x/iqyBMg), or you can [add, commit,](https://confluence.atlassian.com/x/8QhODQ) and [push from the command line](https://confluence.atlassian.com/x/NQ0zDQ).
