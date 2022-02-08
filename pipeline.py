@@ -119,7 +119,7 @@ def main():
                     else:
                         stokes_keys.append('-'.join(keyword[1:]))
         oper_keys = ':'.join(oper_keys)
-        print(podc_keys,stokes_keys,oper_keys)
+        print(basic_keys,podc_keys,stokes_keys,oper_keys)
             
     except IOError:
         print('Cannot find ' + rawdata_dir + instructions)

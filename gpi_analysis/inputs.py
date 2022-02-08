@@ -241,7 +241,7 @@ def createrecipe(INPUT_FILES, INPUT_DIRECTORY, REDUCED_DIRECTORY,
     # INSERT OPTIONAL KEYWORDS
     PRIMITIVE_STRINGS = TEMPLATE_SPLIT_STRINGS[1]
     if len(KEYS)>0:
-        print('Extra args: ', KEYS)
+        print('Amended Keys from Template File: ', KEYS)
         for KEY in KEYS:
             # Isolate e.g. 'x0' from 'x0="140"'
             SPLIT_KEY = KEY.split('=')
