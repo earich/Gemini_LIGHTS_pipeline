@@ -83,20 +83,20 @@ def main():
     #Import arguments and flags from the origional commandline prompt. EAR
     # Example on how to execute the code from command line:
     #     python3 pipeline.py 'template.txt'
-    #     This executes the code, tells the code where it can find the raw data files and 
-    #     where it can find parameters on how to reduce the data.   
- 
+    #     This executes the code, tells the code where it can find the raw data files and
+    #     where it can find parameters on how to reduce the data.
+
     #rawdata_dir = sys.argv[1]
     # If you prefer to specify the raw directory in call arguments, uncomment the line above and
     #    switch the 1 to a 2 below.
     instructions = sys.argv[1]
-    
+
     rawdata_dir = rawdata_directory + sys.argv[2]
-    
+
     skip = ''
     if len(sys.argv) > 3:
         skip = sys.argv[3]
-    
+
     basic_keys = []
     podc_keys   = []
     stokes_keys = []
@@ -120,19 +120,19 @@ def main():
                         stokes_keys.append('-'.join(keyword[1:]))
         oper_keys = ':'.join(oper_keys)
         print(podc_keys,stokes_keys,oper_keys)
-            
+
     except IOError:
         print('Cannot find ' + rawdata_dir + instructions)
         print('exiting pipeline now. Goodbye')
         exit()
-    
+
     rawdata_files    = getfilenames_l(rawdata_dir,'files.lst',KEEPDIR=0) #Function to return .fits names in text listed file
     target           = getfitskeywords(rawdata_dir+rawdata_files[0], 'OBJECT')
     waveband         = getfitskeywords(rawdata_dir+rawdata_files[0],
                                        'OBSMODE')[0]
     date_obs         = getfitskeywords(rawdata_dir+rawdata_files[-1], 'DATE-OBS')
     date_obs         = ''.join(date_obs.split('-'))
-    
+
     # Sanity check:
     here_dir = os.path.dirname(os.path.abspath(__file__))
     os.system("python3 "+here_dir+"/sanity.py '"+rawdata_dir+\
@@ -175,7 +175,7 @@ def main():
                            '_' + str(mask_limit))
         exit()
 
-    
+
     elif skip.find('stokes') == -1 and skip.find('final') == -1:
         #Check if the data used a coronograph
         coron = getfitskeywords(rawdata_dir+rawdata_files[0], 'OBSMODE')
@@ -187,7 +187,7 @@ def main():
                                            basic_keys, RECIPE=5,
                                            RETURN_OUTPUT_DIRECTORY=1)
             wait(30,len(rawdata_files),CHECK=output_directory+rawdata_files[-1].split('.')[0]+'_podc.fits')
-    
+
             # Write all of the keys to a log file to keep track of what is done in each reduction
             exist = path.exists(output_directory + 'logfile_pipeline.log')
             if exist == True:
@@ -199,11 +199,11 @@ def main():
             string = 'execute ' + str(datetime.datetime.now()) + ': '
             F.write(string + ' '.join(sys.argv) + '\n')
             F.close()
-            
+
             os.system('cp ' + rawdata_dir.replace(' ','\ ') + 'files.lst ' + output_directory.replace(' ','\ ') + 'files.lst')
-            
+
             output_directory = reduced_directory + target + '-' + waveband + '/' + date_obs + '/'
-            
+
             bpfix_files       = getfilenames_l(output_directory,'files.lst',
                                              END='_podc.fits',
                                              KEEPDIR=0)
@@ -213,24 +213,24 @@ def main():
                 mask_fits(bpfix_files,output_directory,reduced_directory + 'calibrations/',Bcent=Bcent)
             else:
                 mask_fits(bpfix_files,output_directory,reduced_directory + 'calibrations/')
-            
+
             mask_files       = getfilenames_l(output_directory,'files.lst',
                                              END='_podc_mask.fits',
                                              KEEPDIR=0)
-            
+
             output_directory = createrecipe(mask_files, output_directory,
                                            reduced_directory, queue_directory,
                                            podc_keys, RECIPE=1,
                                            RETURN_OUTPUT_DIRECTORY=1)
-            
+
             wait(30,len(rawdata_files),CHECK=output_directory+rawdata_files[-1].split('.')[0]+'_podc_mask_.fits')
             PSFCENT_files       = getfilenames_l(output_directory,'files.lst',
                                              END='_podc_mask_.fits',
                                              KEEPDIR=0)
             rename_fits(PSFCENT_files,output_directory,'_PSFCENT.fits')
             update_cent(PSFCENT_files,output_directory)
-            
-            
+
+
         else:
             print('using non-coronographic reduction')
             output_directory = createrecipe(rawdata_files, rawdata_dir,
@@ -239,11 +239,11 @@ def main():
                                            RETURN_OUTPUT_DIRECTORY=1)
             wait(30,len(rawdata_files),CHECK=output_directory+rawdata_files[-1].split('.')[0]+'_podc.fits')
             os.system('cp ' + rawdata_dir.replace(' ','\ ') + 'files.lst ' + output_directory.replace(' ','\ ') + 'files.lst')
-            
-        plot_center(output_directory) 
+
+        plot_center(output_directory)
         # Wait until final podc is created:
         # NEED TO MODIFY THE OUTPUT FILENAMES ABOVE. CURRENTLY IT SPITS OUT *_bpfix_.fits
-        
+
         #Check if Flexure is correct
         gather_flexure(rawdata_files,rawdata_dir,output_directory)
         #Check for flux variability and AO performance. First check keys to see if there is a binary
@@ -268,24 +268,32 @@ def main():
         output_directory = reduced_directory + target + '-' + waveband + '/' + date_obs + '/'
         #plot_fluxchange(rawdata_files,output_directory)
         print('Skipping over PODC files. Will use already processed files in : ' + output_directory)
- 
+
     if skip == '' or skip.find('stokes') != -1:
         # Create stokesdc recipe:
         # To remove PSFcheck step, change to END='podc.fits'
         podc_files       = getfilenames_l(output_directory,'files.lst',
                                         END='_podc.fits',
                                         KEEPDIR=0)
-        for X in range(0,len(podc_files),4):
-            output_directory = createrecipe(podc_files[X:X+4], output_directory,
+
+        if skip.find('stokes32') == 0:
+            print('Making 1 stokesdc from all podc instead of 1 per HWP cycle.')
+            output_directory = createrecipe(podc_files, output_directory,
                                             reduced_directory, queue_directory,
                                             stokes_keys,
                                             RECIPE=2, RETURN_OUTPUT_DIRECTORY=1)
+        else:
+            for X in range(0,len(podc_files),4):
+                output_directory = createrecipe(podc_files[X:X+4], output_directory,
+                                                reduced_directory, queue_directory,
+                                                stokes_keys,
+                                                RECIPE=2, RETURN_OUTPUT_DIRECTORY=1)
         wait(30,len(rawdata_files)*0.25,CHECK= output_directory + podc_files[-1][:-5] + '_stokesdc.fits')
-    
+
         # Update output_directory here manually if necessary
         # e.g. comment out above and only run stokes part of pipeline.
-    
-    else: 
+
+    else:
         print('Skipping over creation of Stokes files. Will begin correcting already created stokesdc files')
 
     # Gather stokesdc, stellar polarisation subtraction:
@@ -375,8 +383,8 @@ def main():
     lpi              = make_linpolint(qphi,uphi)
     plotfour([lpi,i,qphi,uphi],  TITLE=target+'-'+waveband,
              SAVENAME=output_directory+target+'-'+waveband+'_maps.png')
-   
-    #Check to see if the DRP pipeline inserted any warnings into the headers. 
+
+    #Check to see if the DRP pipeline inserted any warnings into the headers.
     # Eg. did not preform dark corrections because there was not an appropriate file
     last_file = glob.glob(output_directory + "*_combined_rstokesdc.fits")
     hdul = fits.open(last_file[0])
@@ -416,9 +424,9 @@ if __name__ == '__main__':
         reduced_directory = ROOT_dir + 'Reduced/'
         rawdata_directory = ROOT_dir + 'Raw/'
         version = 'v' + ROOT_dir.split('/')[-2].split('_')[-1]
-        print('Successfuly got directories from .gpienv file')   
+        print('Successfuly got directories from .gpienv file')
         print(queue_directory,reduced_directory,rawdata_directory,version)
- 
+
     except IOError:
         print('Using directories sepcified in pipeline.py')
         # GPI_DRP_QUEUE_DIR and GPI_REDUCED_DATA_DIR from the gpienv.
@@ -431,5 +439,5 @@ if __name__ == '__main__':
         #'/Users/al630/gpi_pipeline_original_1.4.0_source/data/Reduced/'
         rawdata_directory = '/Users/earich/work_reduction/Raw/'
         print(queue_directory,reduced_directory,rawdata_directory)
-    
+
     main()
