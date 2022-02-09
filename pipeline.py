@@ -67,36 +67,39 @@ def wait(TIME_FOR_EACH, NUMBER_OF_FILES=1, CHECK=''):
         dtime = 0.0
         mins = int(time_to_wait/60.0)
         secs = int(time_to_wait%60.0)
+        print('Started at ' + time.strftime('%X %x %Z'))
         print('Max waiting time: ' + str(mins)+'m'+str(secs)+ 's. ')
         while dtime < time_to_wait:
             exist = path.exists(CHECK)
             if exist == True:
-                print('Wait Complete')
+                print('\n Wait Complete')
                 dtime = time_to_wait
             else:
-                print('waiting another half minute minute. Started at ' + time.strftime('%X %x %Z') )
-                time.sleep(30.0)
+                print('.', end="", flush=True)
+                #print('waiting another half minute minute. Started at ' + time.strftime('%X %x %Z') )
+                time.sleep(10.0)
                 dtime = time.time() - stime
 
 # %%%%%%%%%%% MAIN FUNCTION %%%%%%%%%%%
 def main():
     #Import arguments and flags from the origional commandline prompt. EAR
     # Example on how to execute the code from command line:
-    #     python3 pipeline.py 'template.txt'
+    #     python3 pipeline.py template.txt /location_of_raw_data_in_raw_directory/
     #     This executes the code, tells the code where it can find the raw data files and
     #     where it can find parameters on how to reduce the data.
 
-    #rawdata_dir = sys.argv[1]
-    # If you prefer to specify the raw directory in call arguments, uncomment the line above and
-    #    switch the 1 to a 2 below.
     instructions = sys.argv[1]
 
     rawdata_dir = rawdata_directory + sys.argv[2]
 
+    #This imports keywords that can be appended after the template and raw directory argv.
+    #    Current keywords include: first, images, stokes, final
     skip = ''
     if len(sys.argv) > 3:
         skip = sys.argv[3]
 
+    #Sort the keys specified in the template.txt file into lists so they can be inserted into
+    #   the appropriate recipe template.
     basic_keys = []
     podc_keys   = []
     stokes_keys = []
@@ -119,13 +122,14 @@ def main():
                     else:
                         stokes_keys.append('-'.join(keyword[1:]))
         oper_keys = ':'.join(oper_keys)
-        print(podc_keys,stokes_keys,oper_keys)
+        print(basic_keys,podc_keys,stokes_keys,oper_keys)
 
     except IOError:
         print('Cannot find ' + rawdata_dir + instructions)
         print('exiting pipeline now. Goodbye')
         exit()
 
+    #
     rawdata_files    = getfilenames_l(rawdata_dir,'files.lst',KEEPDIR=0) #Function to return .fits names in text listed file
     target           = getfitskeywords(rawdata_dir+rawdata_files[0], 'OBJECT')
     waveband         = getfitskeywords(rawdata_dir+rawdata_files[0],
@@ -133,19 +137,23 @@ def main():
     date_obs         = getfitskeywords(rawdata_dir+rawdata_files[-1], 'DATE-OBS')
     date_obs         = ''.join(date_obs.split('-'))
 
-    # Sanity check:
+    # Sanity check to check airmass, time, order, and WPANGLE.
+    #   Output file of _sanitycheck.txt located in sepcified raw directory
     here_dir = os.path.dirname(os.path.abspath(__file__))
     os.system("python3 "+here_dir+"/sanity.py '"+rawdata_dir+\
               "' 'AIRMASS' 'RMSERR' 'RAWIQ' 'IFSFILT'")
     wait(5)
 
+    #if the first keyword is specified, a recipe is created and run on the first raw data file
+    #    named in files.lst
     if skip.find('first') != -1:  # produces the PODC frame of just the first frame
         output_directory = createrecipe(rawdata_files[:1], rawdata_dir,
                                        reduced_directory, queue_directory,
                                        basic_keys, RECIPE=0,
                                        RETURN_OUTPUT_DIRECTORY=1)
-        exit()
+        exit() # pipeline ends here if first keyword is used
 
+    #EAR: not sure if this is needed anymore
     if skip.find('images') != -1: #reruns calibration images
         #Interpret the necessary oper_keys
         output_directory = reduced_directory + target + '-' + waveband + '/' + date_obs + '/'
@@ -175,7 +183,7 @@ def main():
                            '_' + str(mask_limit))
         exit()
 
-
+    # continuation of pipeline. Skipped if keywords final or stokes are used.
     elif skip.find('stokes') == -1 and skip.find('final') == -1:
         #Check if the data used a coronograph
         coron = getfitskeywords(rawdata_dir+rawdata_files[0], 'OBSMODE')
@@ -239,14 +247,15 @@ def main():
                                            RETURN_OUTPUT_DIRECTORY=1)
             wait(30,len(rawdata_files),CHECK=output_directory+rawdata_files[-1].split('.')[0]+'_podc.fits')
             os.system('cp ' + rawdata_dir.replace(' ','\ ') + 'files.lst ' + output_directory.replace(' ','\ ') + 'files.lst')
-
+        # outputs *_podc_centers.png files in target reduced directory
         plot_center(output_directory)
-        # Wait until final podc is created:
-        # NEED TO MODIFY THE OUTPUT FILENAMES ABOVE. CURRENTLY IT SPITS OUT *_bpfix_.fits
 
-        #Check if Flexure is correct
+        #Check if Flexure is correct. Outputs *_flexure.png files in target reduced directory
         gather_flexure(rawdata_files,rawdata_dir,output_directory)
-        #Check for flux variability and AO performance. First check keys to see if there is a binary
+
+        #Check for flux variability and AO performance. First check keys to see if there is
+        #   binary. Binary masked if binary. Outputs *_residual.png files in target reduced
+        #   directory
         if oper_keys.find('Bcent') != -1:
             shold = oper_keys.split('Bcent')[1]
             Bcent = (float(shold.split('(')[1].split(',')[0]),float(shold.split(',')[1].split(')')[0]))
@@ -254,6 +263,7 @@ def main():
             plot_fluxchange(rawdata_files,output_directory,Bcent=Bcent)
         else:
             plot_fluxchange(rawdata_files,output_directory)
+
         print('Plotting flexure and flux change complete')
         # Check PSF centres, update any anomalies:
         #os.system('cp ' + rawdata_dir.replace(' ','\ ') + 'files.lst ' + output_directory.replace(' ','\ ') + 'files.lst')
@@ -305,21 +315,18 @@ def main():
     if oper_keys.find('MINR') != -1:
         shold = oper_keys.split('MINR')[1]
         MINR = float(shold.split('"')[1])
-        print(MINR)
     else:
         MINR = 70.0
         print('MINR not specified, using: ' + MINR)
     if oper_keys.find('MAXR') != -1:
         shold = oper_keys.split('MAXR')[1]
         MAXR = float(shold.split('"')[1])
-        print(MAXR)
     else:
         MAXR = 70.0
         print('MAXR not specified, using: ' + MAXR)
     if oper_keys.find('NBOOT') != -1:
         shold = oper_keys.split('NBOOT')[1]
         NBOOT = int(shold.split('"')[1])
-        print(NBOOT)
     else:
         NBOOT = 100
     if oper_keys.find('Bcent') != -1:

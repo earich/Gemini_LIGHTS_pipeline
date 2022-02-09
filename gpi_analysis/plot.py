@@ -757,7 +757,7 @@ def plot_flexure(image,loc,name,sdx,sdy,reduced_dir):
 def gather_flexure(raw_files,rawdata_dir,reduced_dir):
     podc_file = raw_files[0][:-5] + '_podc.fits'
     hold = getfitskeywords(reduced_dir+podc_file, 'HISTORY')
-    print(hold)
+    #print(hold)
     #hold = str(header['HISTORY']).split('\n')
     seg = 'GPI_LOAD_POLARIMETRY_SPOT_CALIBRATION: /Users/'
     for i in range(0,len(hold)):
@@ -774,7 +774,7 @@ def gather_flexure(raw_files,rawdata_dir,reduced_dir):
             else:
                 calib = line
             calib = calib.split(':')[-1].strip(' ')
-    print(calib)
+    #print(calib)
     hdu = fits.open(calib) #('/Users/earich/work_reduction2/Reduced/calibrations/S20171231S0432_J-polcal.fits')
     loc = hdu[1].data
     for i in range(0,len(raw_files)):
@@ -845,7 +845,7 @@ def plot_fluxchange(files,directory,Bcent=(-1,-1), du = 20):
         fig.colorbar(img4, cax=cax4, orientation='vertical')
         
         plt.savefig(directory + file1.split('_')[0] + '_' + file2.split('_')[0] + '_residual.png')
-        print(directory + file1.split('_')[0] + '_' + file2.split('_')[0] + '_residual.png')
+        #print(directory + file1.split('_')[0] + '_' + file2.split('_')[0] + '_residual.png')
         plt.close()
     return
 

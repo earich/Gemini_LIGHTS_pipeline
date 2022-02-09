@@ -188,7 +188,11 @@ def fluxcal(REDUCED_DIR, QUEUE_DIR, MAG, MAG_ERR, BAND, MAGTOFLUX=1):
     return VALS
 
 def assumed_scale(REDUCED_DIR,SCALE):
+    print(REDUCED_DIR)
     files = glob.glob(REDUCED_DIR + "*_combined_rstokesdc.fits")
+    print('Flux calibration using Assumed scale')
+    print('Flux calibrating files:')
+    print(files)
     for file in files:
         hdul = fits.open(file)
         hdr = hdul[1].header
