@@ -241,7 +241,6 @@ def createrecipe(INPUT_FILES, INPUT_DIRECTORY, REDUCED_DIRECTORY,
     # INSERT OPTIONAL KEYWORDS
     PRIMITIVE_STRINGS = TEMPLATE_SPLIT_STRINGS[1]
     if len(KEYS)>0:
-        print('Amended Keys from Template File: ', KEYS)
         for KEY in KEYS:
             # Isolate e.g. 'x0' from 'x0="140"'
             SPLIT_KEY = KEY.split('=')
@@ -281,6 +280,7 @@ def createrecipe(INPUT_FILES, INPUT_DIRECTORY, REDUCED_DIRECTORY,
 
     print('Created recipe for '+TYPE+'.')
     print('Output directory: ', FILE_OUTPUT_DIRECTORY)
+    print('Amended Keys from Template File: ', KEYS)
     if RETURN_OUTPUT_DIRECTORY > 0:
         return FILE_OUTPUT_DIRECTORY
     else:

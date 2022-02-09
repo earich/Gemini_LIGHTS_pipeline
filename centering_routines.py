@@ -36,8 +36,8 @@ def update_cent(files,directory):
         HDUL3 = hdu1
         #hdu2 = fits.open(directory + name.split('_')[0] + '_PSFCENT.fits')
         XYarray = get_psfcoords(directory + name.split('_')[0] + '_PSFCENT.fits')
-        HDUL3['sci'].header['PSFCENTX'] = 148.0 #XYarray[0]
-        HDUL3['sci'].header['PSFCENTY'] = 145.0 #XYarray[1]
+        HDUL3['sci'].header['PSFCENTX'] = XYarray[0]
+        HDUL3['sci'].header['PSFCENTY'] = XYarray[1]
         HDUL3.writeto(directory + name.split('_')[0] + '_podc.fits' ,overwrite=True)
         hdu1.close()
         HDUL3.close()
@@ -59,7 +59,6 @@ def plot_center(dir):
     coords      = np.array(coords)
     for i in range(0,len(files)):
         image = getfitsdata(files[i])
-        print(files[i],coords[i][0],coords[i][1])
         x,y = int(coords[i][0]), int(coords[i][1])
         ds = 25
         dx, dy = x - ds, y - ds
@@ -69,6 +68,7 @@ def plot_center(dir):
             plt.plot(A[0]-dx,A[1]-dy,'x',color='w')
         plt.plot(coords[i][0]-dx,coords[i][1]-dy,'o',color='w')
         plt.savefig(files[i][:-5] + '_centers.png')
+        plt.close()
 
 def mask_fits(files,directory,reduced_directroy,Bcent=(0,0),Pcent = (148,146)): #Using the AO spot mask is no longer used
     PSFCENTX, PSFCENTY = Pcent[0], Pcent[1]
