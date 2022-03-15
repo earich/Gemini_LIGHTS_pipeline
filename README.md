@@ -31,13 +31,13 @@ In this example, I will use the example for the target MWC 275 which was observe
 8) Inspect the podc file (suffix _bpfix.fits). Search for bright binaries or failure of the flexure. Adjust these parameters in the template file (mwc275-J.txt) as needed.
 9) execute python3 python3 pipeline.py mwc275-J.txt mwc275/20140424-J/
 10) No keyword will execute the entire pipeline producing _combined_rstokesdc.fits files. 
-11) 
+
 python3 pipeline.py template.txt /location_in_Raw_directory/ optional_key_word
 where template.txt is a text file listing the requested reduction parameters 
 
 
 **Outline of file outputs** 
-Diagnostic Images:
+Diagnostic Images: TBD
 
-Output FITS files:
+Output FITS files: TBD
 
